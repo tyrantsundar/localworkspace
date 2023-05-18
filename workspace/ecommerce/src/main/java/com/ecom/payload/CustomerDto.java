@@ -1,6 +1,5 @@
 package com.ecom.payload;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.NonNull;
 @Data
