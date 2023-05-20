@@ -3,6 +3,9 @@ package com.ecom.entities;
 import javax.persistence.*;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name="customers")
@@ -26,4 +29,14 @@ public class Customer {
     private String email;
     @Column(name = "mobile",unique = true,nullable = false)
     private String mobile;
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<OrderDetail> orderDetailSet = new HashSet<>();
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<CreditCardDetail> creditCardDetailSet = new HashSet<>();
+//    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
+//    private Set<BookReview> bookReviewSet = new HashSet<>();
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<PurchaseHistory> purchaseHistorySet = new HashSet<>();
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<ShoppingCartItem> shoppingCartItemSet = new HashSet<>();
 }

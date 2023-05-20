@@ -1,6 +1,6 @@
 package com.ecom.controller;
 
-import com.ecom.payload.BooksDto;
+import com.ecom.payload.BookDto;
 import com.ecom.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,25 +17,25 @@ public class BookController {
         this.bookService = bookService;
     }
     @PostMapping
-    public ResponseEntity<BooksDto> createBook(@RequestBody BooksDto booksDto){
-        return new ResponseEntity<>(bookService.createBook(booksDto), HttpStatus.CREATED);
+    public ResponseEntity<BookDto> createBook(@RequestBody BookDto bookDto){
+        return new ResponseEntity<>(bookService.createBook(bookDto), HttpStatus.CREATED);
     }
     @GetMapping
-    public ResponseEntity<List<BooksDto>> getAllBooks(){
+    public ResponseEntity<List<BookDto>> getAllBooks(){
         return new ResponseEntity<>(bookService.getAllBooks(),HttpStatus.OK);
     }
-    @GetMapping("/{inventoryId}")
-    public ResponseEntity<BooksDto> getBookById(@PathVariable(value ="inventoryId" ) long inventoryId){
-        return new ResponseEntity<>(bookService.getBookById(inventoryId),HttpStatus.OK);
+    @GetMapping("/{bookId}")
+    public ResponseEntity<BookDto> getBookById(@PathVariable(value ="bookId" ) long bookId){
+        return new ResponseEntity<>(bookService.getBookById(bookId),HttpStatus.OK);
     }
-    @PutMapping("/{inventoryId}")
-    public ResponseEntity<BooksDto> updateBook(@PathVariable(value = "inventoryId") long inventoryId
-                                                ,@RequestBody BooksDto booksDto){
-        return new ResponseEntity<>(bookService.updateBook(inventoryId,booksDto),HttpStatus.OK);
+    @PutMapping("/{bookId}")
+    public ResponseEntity<BookDto> updateBook(@PathVariable(value = "bookId") long bookId
+                                                , @RequestBody BookDto bookDto){
+        return new ResponseEntity<>(bookService.updateBook(bookId, bookDto),HttpStatus.OK);
     }
-    @DeleteMapping("/{inventoryId}")
-    public ResponseEntity<String> deleteBook(@PathVariable(value = "inventoryId")long inventoryId){
-        bookService.deleteBook(inventoryId);
+    @DeleteMapping("/{bookId}")
+    public ResponseEntity<String> deleteBook(@PathVariable(value = "bookId")long bookId){
+        bookService.deleteBook(bookId);
         return new ResponseEntity<>("Book is deleted",HttpStatus.OK);
     }
 }
