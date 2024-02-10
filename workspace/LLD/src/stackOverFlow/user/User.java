@@ -24,4 +24,9 @@ public class User implements IUser{
     public int getReputationPoint() {
         return reputationPoint;
     }
+
+    @Override
+    public void increaseReputationPoint() {
+        this.reputationPoint++;
+    }
 }
